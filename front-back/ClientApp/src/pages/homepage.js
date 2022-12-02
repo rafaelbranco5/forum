@@ -3,16 +3,16 @@ import styled from "styled-components";
 import axios from 'axios';
 import './StyleSheet.css'
 
-
+import { GetAllPost } from "../components/APIconection/Post";
 
 function Homepage() {
     const [posts, setPosts] = useState([]);
 
     const fetchPosts = async () => {
-        const { data } = await axios.get("http://localhost:44460/api/post/All");
-        const post = data;
-        setPosts(post);
-        console.log(post);
+
+        GetAllPost(setPosts);
+
+        console.log(posts);
     };
 
     useEffect(() => {
@@ -25,7 +25,12 @@ function Homepage() {
         <ul>
             <li>
                 <button >
-                    {posts.map((post, index) => ({post}))}
+                    {posts.map((post, index) => (
+
+                        <text>
+                            {post.postName}
+                        </text>
+                    ))}
                     
                 </button>
             </li>
